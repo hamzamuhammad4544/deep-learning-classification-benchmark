@@ -16,6 +16,7 @@ results/
 
 # Excluded scripts
 run_all.py
+build_table2.py
 
 # OS / editor
 .DS_Store
