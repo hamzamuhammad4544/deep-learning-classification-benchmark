@@ -14,8 +14,13 @@ env/
 # Results / generated outputs
 results/
 
+# Excluded scripts
+run_all.py
+
 # OS / editor
 .DS_Store
 Thumbs.db
 .vscode/
 .idea/
+
+

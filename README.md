@@ -13,7 +13,6 @@ data_loader.py         loads + preprocesses each dataset
 models.py               the 6 algorithms (LR / LR-L2 / LR-L1 / FNN / FNN-L2 / FNN-L1)
 evaluate.py              100x 70/30 hold-out evaluation harness shared by all 6 algorithms
 stats_analysis.py       Friedman test + pairwise Wilcoxon -> Win-Tie-Loss table
-run_all.py               orchestrator: runs everything, saves results + plots
 requirements.txt
 ```
 
@@ -25,15 +24,27 @@ pip install -r requirements.txt
 
 ## Usage
 
-```bash
-# Quick smoke test first (a couple of minutes):
-python run_all.py --n_runs 5
+Each script is meant to be run and explored individually rather than as one
+end-to-end pipeline:
 
-# Full benchmark (see timing note below):
-python run_all.py
+```bash
+# Sanity-check the datasets load and preprocess correctly:
+python data_loader.py
+
+# Run the 100x hold-out evaluation for a dataset (edit evaluate.py to pick
+# which dataset / algorithms to run, or import it interactively):
+python evaluate.py
+
+# Run the statistical tests (Friedman + Wilcoxon) over evaluation results:
+python stats_analysis.py
 ```
 
-This produces a `results/` folder containing:
+Running things this way lets you inspect, tweak, and re-run individual
+stages (data loading, model definitions, evaluation, statistics) without
+committing to the full 5-dataset x 6-algorithm x 100-run sweep every time.
+
+Each stage produces (or can be adapted to save) outputs into a `results/`
+folder, such as:
 
 - `raw_results.pkl` — every individual accuracy/F1/AUC value from every one
   of the 100 runs, for every algorithm, for every dataset (so you never
@@ -74,5 +85,4 @@ Keras networks. On a typical laptop CPU this realistically takes
 1–3 hours, with Spambase (4,601 rows) the slowest dataset by far. Options
 if you need it faster:
 - Lower `FNN_EPOCHS` in `models.py` (currently 50).
-- Run datasets one at a time via `data_loader.py` + `evaluate.py`
-  directly instead of the full `run_all.py` sweep.
+- Run one dataset / one algorithm at a time instead of the full sweep.
