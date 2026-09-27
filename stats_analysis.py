@@ -1,8 +1,7 @@
 """
 stats_analysis.py
 ------------------
-Part 3 of the assignment: statistical testing across the 100 paired values
-per algorithm, per dataset.
+Statistical testing across the 100 paired values per algorithm, per dataset.
 
 Method chosen: Wilcoxon signed-rank test (paired, non-parametric), with a
 Friedman test as an overall omnibus check per dataset.
