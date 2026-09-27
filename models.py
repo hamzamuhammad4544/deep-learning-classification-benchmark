@@ -1,7 +1,7 @@
 """
 models.py
 ---------
-Builders for the 6 algorithms required by the assignment:
+The 6 algorithms:
 
   1. Logistic Regression                      (LR)
   2. Logistic Regression + L2                 (LR-L2)
@@ -10,15 +10,6 @@ Builders for the 6 algorithms required by the assignment:
   5. 3-layer FNN + L2                          (FNN-L2)
   6. 3-layer FNN + L1                          (FNN-L1)
 
-"3-layer" = Input layer -> 1 Hidden layer (ReLU) -> Output layer.
-All FNNs use cross-entropy loss (binary_crossentropy, since every
-dataset here is 2-class) and default Keras/Adam settings otherwise,
-per the assignment's "use default parameters" instruction.
-
-A NEW model must be built for every hold-out iteration (see evaluate.py)
-so that no weights leak between iterations -- these builder functions
-return a freshly constructed, freshly compiled model each time they
-are called.
 """
 
 from sklearn.linear_model import LogisticRegression
